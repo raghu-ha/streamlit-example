@@ -38,3 +38,35 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
         color=alt.Color("idx", legend=None, scale=alt.Scale()),
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
+
+# Sample Data (replace with your actual data)
+data = {
+    'date': pd.to_datetime(['2023-01-01', '2023-02-01', '2023-03-01', '2023-04-01', '2023-05-01', '2023-06-01', '2023-07-01', '2023-08-01', '2023-09-01', '2023-10-01']),
+    'Overall': [50, 60, 70, 80, 65, 75, 85, 90, 80, 70],
+    'Exterr': [30, 35, 40, 45, 40, 45, 50, 55, 50, 45],
+    'Internal': [20, 25, 30, 35, 30, 35, 40, 45, 40, 35]}
+
+df = pd.DataFrame(data)
+
+# Month and Year Selection (using selectboxes)
+month_options = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+selected_month = st.selectbox("Select Month:", month_options)
+
+year_options = [2022, 2023]  # Adjust years as needed
+selected_year = st.selectbox("Select Year:", year_options)
+
+# Filter Data (assuming 'date' column for month and year)
+filtered_df = df[df['date'].dt.month == month_options.index(selected_month) + 1]
+filtered_df = filtered_df[df['date'].dt.year == selected_year]
+
+# Display Report (using the filtered data)
+st.header("Report")
+
+# **Option 1: Using st.table for basic table layout**
+st.table(filtered_df[['Overall', 'Exterr', 'Internal']])  # Select specific columns for display
+
+# **Option 2: Using st.dataframe for more control (customize as needed)**
+st.dataframe(filtered_df.style.set_properties(align='center'))  # Center-align table
+
+# Additional Charts or Information (Optional)
+# ... You can add more sections here to display charts or other data based on selection
