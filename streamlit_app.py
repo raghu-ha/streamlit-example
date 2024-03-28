@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 # WARNING: Hardcoded credentials are for demonstration purposes ONLY.
 # In a production environment, implement secure authentication using
 # password hashing, databases, or external services.
@@ -25,7 +26,36 @@ def login_form():
         else:
             st.error("Invalid username or password.")
 
+
+
+
+# Create a list for navigation links (can be replaced with a dictionary for more control)
+navigation_links = ["Home", "Planning nerve center", "Procurement", "Supply Chain",
+                    "Inbound Logistics", "Production", "Outbound Logistics", "Safety",
+                    "Networking Operations Center", "Cyber Security"]
+
 def landing_page():
+    st.title("Manufacturing Control Tower")  # Replace with your title
+
+    # Create the horizontal navigation bar
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write("")  # Placeholder for empty space in the first column for alignment
+    with col2:
+        for link in navigation_links[:5]:  # Display first 5 links in center column
+            st.button(link)
+    with col3:
+        st.write("")  # Placeholder for empty space in the third column for alignment
+
+    # Display section descriptions and buttons
+    st.write("---")  # Horizontal separator
+    for section in navigation_links[1:]:  # Start from the second link (skip "Home")
+        st.header(section)
+        st.write("A brief description of " + section.lower())  # Replace with actual descriptions
+        explore_button = st.button("Explore Here")
+        # Add logic here to handle button clicks (link to other pages or sections)
+
+def landing_page1():
     st.title(f"Welcome, {st.session_state['username']}!")
     st.write("This is the landing page. Navigate to your desired reports below:")
 
