@@ -21,6 +21,7 @@ def login_form():
             st.session_state["authenticated"] = True
             st.session_state["username"] = username
             st.success("Login successful!")
+            print("Authenticated:", st.session_state["authenticated"])
         else:
             st.error("Invalid username or password.")
 
