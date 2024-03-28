@@ -47,12 +47,12 @@ def landing_page():
     with col3:
         st.write("")  # Placeholder for empty space in the third column for alignment
 
-    # Display section descriptions and buttons
+    # Display section descriptions and buttons with unique keys
     st.write("---")  # Horizontal separator
-    for section in navigation_links[1:]:  # Start from the second link (skip "Home")
+    for i, section in enumerate(navigation_links[1:]):  # Start from the second link (skip "Home")
         st.header(section)
         st.write("A brief description of " + section.lower())  # Replace with actual descriptions
-        explore_button = st.button("Explore Here")
+        explore_button = st.button("Explore Here", key=f"explore_button_{i}")
         # Add logic here to handle button clicks (link to other pages or sections)
 
 def landing_page1():
