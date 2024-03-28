@@ -17,7 +17,7 @@ def login_form():
 
     if login_button:
         # Simulate authentication (replace with actual authentication logic)
-        if username == "testuser" and password == "hardcoded_password":  # INSECURE
+        if username == "testuser" and password == "testuser":  # INSECURE
             st.session_state["authenticated"] = True
             st.session_state["username"] = username
             st.success("Login successful!")
